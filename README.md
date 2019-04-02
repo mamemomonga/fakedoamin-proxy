@@ -18,3 +18,5 @@
 	$ make
 	ログが表示されたらCTRL+C
 
+Firefoxなどのhttp, https プロクシとして localhost:8888 を指定します。
+
