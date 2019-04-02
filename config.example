@@ -1,0 +1,5 @@
+# 許可するドメイン 書き換え先ドメイン(空欄の場合はバイパス)
+yahoo.co.jp      nginx
+www.yahoo.co.jp  nginx
+www.google.com
+google.com
