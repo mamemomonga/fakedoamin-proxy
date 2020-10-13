@@ -1,19 +1,20 @@
-.PHONY: build up down clean
-
-up: var/certs
-	docker-compose up -d
-	docker-compose logs -f
-
-down:
-	docker-compose down
-
-var/certs:
-	mkdir -p $@
-	docker-compose run -T --rm fakedomain /opt/self-signed-keys.sh | tar xvC $@
+IMAGE=fakedomain-proxy
 
 build:
-	docker-compose build
+	docker build -t $(IMAGE) .
 
-clean: down
-	rm -rf var
+run:
+	docker run --rm \
+		-v $(CURDIR)/config.yaml:/config.yaml:ro \
+		-v $(CURDIR)/var/certs:/opt/certs \
+		-p 8888:8888 \
+		$(IMAGE)
+
+shell:
+	mkdir -p $(CURDIR)/var/certs
+	docker run --rm -it \
+		-v $(CURDIR)/config.yaml:/config.yaml:ro \
+		-v $(CURDIR)/var/certs:/opt/certs \
+		-p 8888:8888 \
+		$(IMAGE) sh
 

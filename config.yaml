@@ -1,0 +1,10 @@
+
+domains:
+  - domain: example     # 対象ドメイン
+    host:   localhost   # 転送先のホスト
+    certs:  true        # 自己署名証明書を作成
+
+  - domain: yahoo.co.jp # default_deny: trueの場合は許可ドメインを列挙する
+
+default_deny: false # 指定したドメイン以外はブロックする場合はtrue
+

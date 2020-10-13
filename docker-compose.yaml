@@ -1,18 +1,11 @@
-version: "3"
-
+version: '3'
 services:
-
-  fakedomain:
-    build: .
-    image: fakedomain
-    volumes:
-       - ./config:/opt/config
-    ports:
+  fakedomain-proxy:
+     build:
+       context: .
+     volumes:
+       - ./var/certs:/opt/certs
+       - ./config.yaml:/config.yaml:ro
+       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+     ports:
        - 8888:8888
-
-  nginx:
-    image: nginx
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./var/certs:/opt/certs:ro
-

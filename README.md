@@ -3,20 +3,12 @@
 特定のドメインを内部のnginxに転送するDockerコンテナです。
 公開されている実ドメインでテストサーバを試験する際に便利です。
 
-自己署名証明書生成機能つき(Alternative Name)
+# Quick Start
 
-# 必要なもの
+	$ docker-compose build
+	$ docker-compose up -d
 
-* Docker
-* docker-compose
-* make
+Firefoxなどのhttp, https プロクシとして localhost:8888 を指定します。 https://example/ にアクセスすると、ページが表示されますが、自己署名なので警告がでるので許可して進んで下さい。
 
-# 使い方
-
-	$ cp config.example config
-	$ vim config
-	$ make
-	ログが表示されたらCTRL+C
-
-Firefoxなどのhttp, https プロクシとして localhost:8888 を指定します。
+コンテナ内のlocalhostではnginx, dnsmasq, tinyproxyが起動しています。localhost:80, localhost:443はnginxへのアクセスになりますので、nginxを調整することでいろいろな利用が可能です。
 
